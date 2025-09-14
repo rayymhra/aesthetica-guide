@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aesthetica Guide - Discover Your Style</title>
+    <style>
+        :root {
+            --primary: #f8f7f4;
+            --secondary: #1a1a1a;
+            --accent: #a31646;
+            --light: #e6e3dc;
+            --dark: #2a2a2a;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+        
+        body {
+            background-color: var(--primary);
+            color: var(--secondary);
+            line-height: 1.6;
+        }
+        
+        header {
+            position: sticky;
+            top: 0;
+            background-color: rgba(248, 247, 244, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: var(--shadow);
+            z-index: 100;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--accent);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+        
+        nav a {
+            text-decoration: none;
+            color: var(--secondary);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        nav a:hover {
+            color: var(--accent);
+        }
+        
+        .hero {
+            padding: 4rem 2rem;
+            text-align: center;
+            background: linear-gradient(135deg, #f8f7f4 0%, #e6e3dc 100%);
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, var(--accent), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+            color: var(--dark);
+        }
+        
+        .search-container {
+            max-width: 600px;
+            margin: 0 auto;
+            position: relative;
+        }
+        
+        .search-input {
+            width: 100%;
+            padding: 1rem 1.5rem;
+            border: 1px solid var(--light);
+            border-radius: 50px;
+            font-size: 1rem;
+            box-shadow: var(--shadow);
+        }
+        
+        .filters {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: center;
+            margin: 2rem 0;
+            padding: 0 2rem;
+        }
+        
+        .filter-btn {
+            padding: 0.5rem 1.5rem;
+            background: white;
+            border: 1px solid var(--light);
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .filter-btn:hover, .filter-btn.active {
+            background: var(--secondary);
+            color: white;
+        }
+        
+        .aesthetics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.5rem;
+            padding: 2rem;
+        }
+        
+        .aesthetic-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s;
+            cursor: pointer;
+        }
+        
+        .aesthetic-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .card-image {
+            height: 200px;
+            overflow: hidden;
+        }
+        
+        .card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .aesthetic-card:hover .card-image img {
+            transform: scale(1.05);
+        }
+        
+        .card-content {
+            padding: 1.5rem;
+        }
+        
+        .card-content h3 {
+            margin-bottom: 0.5rem;
+            font-size: 1.2rem;
+        }
+        
+        .card-content p {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+        
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+        
+        .tag {
+            background: var(--light);
+            padding: 0.3rem 0.7rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
+        }
+        
+        .cta-section {
+            background: var(--dark);
+            color: white;
+            padding: 4rem 2rem;
+            text-align: center;
+            margin-top: 4rem;
+        }
+        
+        .cta-section h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: var(--accent);
+            color: white;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            margin-top: 1rem;
+            transition: all 0.3s;
+        }
+        
+        .cta-button:hover {
+            background: #8a0f39;
+            transform: translateY(-2px);
+        }
+        
+        footer {
+            padding: 3rem 2rem;
+            background: var(--light);
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+        
+        .footer-section h3 {
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .footer-links a {
+            color: var(--dark);
+            text-decoration: none;
+        }
+        
+        .footer-links a:hover {
+            color: var(--accent);
+        }
+        
+        .copyright {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding-top: 2rem;
+            margin-top: 2rem;
+            border-top: 1px solid rgba(0, 0, 0, 0.1);
+            color: #666;
+        }
+        
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            nav ul {
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">Aesthetica Guide</div>
+        <nav>
+            <ul>
+                <li><a href="#">Discover</a></li>
+                <li><a href="#">Categories</a></li>
+                <li><a href="#">Moodboard</a></li>
+                <li><a href="#">Guides</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <h1>Discover Your Aesthetic</h1>
+        <p>Explore visual styles, find inspiration, and create moodboards without algorithms limiting your discovery</p>
+        
+        <div class="search-container">
+            <input type="text" class="search-input" placeholder="Search aesthetics or just browse...">
+        </div>
+    </section>
+
+    <div class="filters">
+        <button class="filter-btn active">All</button>
+        <button class="filter-btn">Fashion</button>
+        <button class="filter-btn">Interiors</button>
+        <button class="filter-btn">Photography</button>
+        <button class="filter-btn">Colorful</button>
+        <button class="filter-btn">Minimal</button>
+        <button class="filter-btn">Vintage</button>
+        <button class="filter-btn">Modern</button>
+    </div>
+
+    <div class="aesthetics-grid" id="aestheticsGrid">
+        <!-- Aesthetic cards will be dynamically loaded here -->
+    </div>
+
+    <section class="cta-section">
+        <h2>Can't find an aesthetic you love?</h2>
+        <p>Suggest new aesthetics or themes you'd like to see on our platform</p>
+        <a href="#contact" class="cta-button">Submit Your Idea</a>
+    </section>
+
+    <footer>
+        <div class="footer-section">
+            <h3>Aesthetica Guide</h3>
+            <p>Your curated platform for aesthetic discovery and inspiration.</p>
+        </div>
+        
+        <div class="footer-section">
+            <h3>Explore</h3>
+            <ul class="footer-links">
+                <li><a href="#">All Aesthetics</a></li>
+                <li><a href="#">Popular Themes</a></li>
+                <li><a href="#">Color Palettes</a></li>
+                <li><a href="#">Style Guides</a></li>
+            </ul>
+        </div>
+        
+        <div class="footer-section">
+            <h3>Help</h3>
+            <ul class="footer-links">
+                <li><a href="#">How to Use</a></li>
+                <li><a href="#">Moodboard Tutorial</a></li>
+                <li><a href="#">FAQ</a></li>
+                <li><a href="#contact">Contact Us</a></li>
+            </ul>
+        </div>
+        
+        <div class="footer-section" id="contact">
+            <h3>Submit Ideas</h3>
+            <p>Have an aesthetic we should feature?</p>
+            <form id="suggestionForm">
+                <input type="email" placeholder="Your email (optional)" style="padding: 0.5rem; margin: 0.5rem 0; width: 100%; border: 1px solid #ccc; border-radius: 4px;">
+                <textarea placeholder="Describe the aesthetic..." style="padding: 0.5rem; margin: 0.5rem 0; width: 100%; height: 100px; border: 1px solid #ccc; border-radius: 4px;"></textarea>
+                <button type="submit" style="background: var(--accent); color: white; border: none; padding: 0.5rem 1rem; border-radius: 4px; cursor: pointer;">Submit Suggestion</button>
+            </form>
+        </div>
+        
+        <div class="copyright">
+            <p>&copy; 2023 Aesthetica Guide. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Sample aesthetic data (would normally be loaded from JSON files)
+        const aestheticsData = [
+            {
+                id: 1,
+                title: "Cottagecore",
+                description: "A nostalgic interpretation of western agricultural life centered around ideas of simple living and harmony with nature.",
+                image: "https://images.unsplash.com/photo-1593941707882-a5bba53377fe?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80",
+                tags: ["nature", "vintage", "romantic", "rural"],
+                category: "lifestyle"
+            },
+            {
+                id: 2,
+                title: "Dark Academia",
+                description: "Aesthetic centered around higher education, writing, and the arts with a moody, classical tone.",
+                image: "https://images.unsplash.com/photo-1541963463532-d68292c34b19?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80",
+                tags: ["academic", "moody", "classical", "literature"],
+                category: "academic"
+            },
+            {
+                id: 3,
+                title: "Minimalist",
+                description: "Characterized by extreme spareness and simplicity, valuing the idea of 'less is more'.",
+                image: "https://images.unsplash.com/photo-1449247709967-d4461a6a6103?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80",
+                tags: ["simple", "clean", "modern", "neutral"],
+                category: "design"
+            },
+            {
+                id: 4,
+                title: "Cyberpunk",
+                description: "Blending futuristic technology with broken down society, often with a neon-noir visual style.",
+                image: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80",
+                tags: ["futuristic", "tech", "neon", "dystopian"],
+                category: "futuristic"
+            },
+            {
+                id: 5,
+                title: "Coastal Grandmother",
+                description: "Inspired by relaxed, elegant seaside living with a palette of neutrals, blues, and whites.",
+                image: "https://images.unsplash.com/photo-1513694203232-719a280e022f?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80",
+                tags: ["coastal", "relaxed", "elegant", "neutral"],
+                category: "lifestyle"
+            },
+            {
+                id: 6,
+                title: "Art Deco",
+                description: "Bold geometric patterns, rich colors, and lavish ornamentation that represented luxury and glamour.",
+                image: "https://images.unsplash.com/photo-1519710164239-da123c03c933?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80",
+                tags: ["vintage", "luxury", "geometric", "glamorous"],
+                category: "vintage"
+            }
+        ];
+
+        // Function to render aesthetic cards
+        function renderAesthetics(aesthetics) {
+            const grid = document.getElementById('aestheticsGrid');
+            grid.innerHTML = '';
+            
+            aesthetics.forEach(aesthetic => {
+                const card = document.createElement('div');
+                card.className = 'aesthetic-card';
+                card.innerHTML = `
+                    <div class="card-image">
+                        <img src="${aesthetic.image}" alt="${aesthetic.title}">
+                    </div>
+                    <div class="card-content">
+                        <h3>${aesthetic.title}</h3>
+                        <p>${aesthetic.description}</p>
+                        <div class="tags">
+                            ${aesthetic.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
+                        </div>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        // Initial render
+        renderAesthetics(aestheticsData);
+
+        // Filter functionality
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Remove active class from all buttons
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                
+                // Add active class to clicked button
+                button.classList.add('active');
+                
+                const filter = button.textContent.toLowerCase();
+                
+                if (filter === 'all') {
+                    renderAesthetics(aestheticsData);
+                } else {
+                    const filteredAesthetics = aestheticsData.filter(aesthetic => 
+                        aesthetic.tags.includes(filter) || aesthetic.category === filter
+                    );
+                    renderAesthetics(filteredAesthetics);
+                }
+            });
+        });
+
+        // Search functionality
+        const searchInput = document.querySelector('.search-input');
+        searchInput.addEventListener('input', (e) => {
+            const searchTerm = e.target.value.toLowerCase();
+            
+            if (searchTerm === '') {
+                renderAesthetics(aestheticsData);
+                return;
+            }
+            
+            const filteredAesthetics = aestheticsData.filter(aesthetic => 
+                aesthetic.title.toLowerCase().includes(searchTerm) ||
+                aesthetic.description.toLowerCase().includes(searchTerm) ||
+                aesthetic.tags.some(tag => tag.includes(searchTerm))
+            );
+            
+            renderAesthetics(filteredAesthetics);
+        });
+
+        // Form submission
+        const suggestionForm = document.getElementById('suggestionForm');
+        suggestionForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('Thanks for your suggestion! We\'ll review it and consider adding it to our collection.');
+            suggestionForm.reset();
+        });
+    </script>
+</body>
+</html>
